@@ -1,52 +1,44 @@
-# Nome do Projeto
+# Nível 2 — Projetos Simples
 
-> Descrição breve da aplicação e do problema que ela resolve.
+## Sobre esta categoria
 
-## Classificação
+Esta categoria reúne projetos desenvolvidos para resolver problemas específicos ou atender a necessidades práticas por meio de soluções de software.
 
-- **Nível:** 2 — Projeto Simples
-- **Categoria:** [API, Aplicação Web, Automação, etc.]
-- **Status:** [Em desenvolvimento, Concluído ou Arquivado]
+Diferentemente dos projetos classificados como testes, que possuem como foco principal a experimentação, os projetos deste nível buscam entregar uma solução funcional para determinado propósito.
 
-## Objetivo
+As implementações podem envolver diferentes tecnologias, estruturas de código e formas de armazenamento de dados, de acordo com as necessidades de cada projeto.
 
-Descreva o propósito do projeto, o problema que ele busca resolver
-e o resultado esperado com sua implementação.
+## Objetivos
 
-## Motivação
+- Desenvolver soluções funcionais para problemas específicos.
+- Aplicar conhecimentos de programação na construção de aplicações.
+- Organizar o código de maneira compreensível e reutilizável.
+- Implementar funcionalidades que atendam aos objetivos propostos.
+- Explorar a integração entre componentes, bibliotecas e serviços.
+- Desenvolver soluções que possam ser executadas e utilizadas em situações práticas.
 
-Explique por que o projeto foi desenvolvido, em qual contexto surgiu
-e qual necessidade motivou sua criação.
+## Critérios de classificação
 
-## Tecnologias Utilizadas
+Um projeto pode ser classificado nesta categoria quando apresenta uma solução funcional para um problema delimitado, com funcionalidades definidas e uma implementação relativamente direta.
 
-- **Linguagem:** 
-- **Frameworks e bibliotecas:** 
-- **Banco de dados:** 
-- **Ferramentas:** 
+A classificação considera o propósito, o escopo, a complexidade da solução e as decisões técnicas envolvidas.
 
-## Funcionalidades
+Um projeto não precisa possuir uma arquitetura complexa ou utilizar diversas tecnologias para se enquadrar nesta categoria.
 
-Descreva as principais funcionalidades implementadas.
+## Sobre os projetos
 
-- Funcionalidade 1
-- Funcionalidade 2
-- Funcionalidade 3
+Cada projeto possui sua própria documentação, descrevendo seus objetivos, motivação, tecnologias utilizadas, funcionalidades, implementação e instruções de execução.
 
-## Implementação
+Quando pertinente, a documentação também apresenta a estrutura do projeto, as regras de funcionamento, o tratamento de erros, os resultados obtidos e as limitações conhecidas.
 
-Explique como a aplicação funciona e como seus principais componentes
-estão organizados.
+O objetivo é permitir que outras pessoas compreendam a solução, conheçam seu funcionamento e consigam executá-la seguindo as instruções fornecidas.
 
-Descreva as decisões técnicas relevantes para compreender a solução,
-incluindo a interação entre os componentes, quando aplicável.
+## Projetos
 
-## Estrutura do Projeto
+| Projeto | Descrição | Status |
+|---|---|---|
+| [Nome do Projeto](./Nome-Do-Projeto/) | [Descrição breve da solução implementada.] | [Status] |
 
-Apresente a organização dos diretórios e arquivos relevantes.
+---
 
-```text
-projeto/
-├── src/
-├── ...
-└── README.md
+**Observação:** a classificação considera o propósito, o escopo e a complexidade de cada implementação, e não apenas a quantidade de código ou o número de tecnologias utilizadas.
