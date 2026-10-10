@@ -1,69 +1,33 @@
-# Nome do Projeto
+# Nível 1 — Testes
 
-> Descrição breve do projeto e de sua finalidade.
+## Sobre esta categoria
 
-## Classificação
+Esta categoria reúne projetos desenvolvidos com o objetivo de testar tecnologias, experimentar abordagens de implementação e verificar conceitos de programação.
 
-- **Nível:** 1 — Testes
-- **Categoria:** [API, Banco de Dados, Algoritmos, etc.]
-- **Status:** [Em desenvolvimento, Concluído ou Arquivado]
+São projetos nos quais o foco principal está na experimentação, permitindo explorar soluções, compreender comportamentos e avaliar possibilidades antes de aplicá-las em projetos mais complexos.
 
-## Objetivo
+## Objetivos
 
-Descreva o que o projeto busca testar, explorar ou demonstrar.
+- Experimentar tecnologias, bibliotecas e ferramentas.
+- Testar abordagens de implementação.
+- Explorar conceitos de programação e desenvolvimento de software.
+- Verificar o funcionamento de soluções específicas.
+- Identificar limitações e possibilidades de determinadas abordagens.
 
-## Motivação
+## Critérios de classificação
 
-Explique por que o projeto foi desenvolvido e em qual contexto surgiu.
-Descreva o problema que motivou sua criação ou o conceito que despertou
-interesse em sua implementação.
+Um projeto pode ser classificado nesta categoria quando seu objetivo principal estiver relacionado à experimentação ou à realização de testes específicos.
 
-## Tecnologias Utilizadas
+Os projetos não precisam apresentar uma aplicação completa ou resolver um problema complexo. O foco está no que se pretende investigar, testar ou demonstrar.
 
-- **Linguagem:** 
-- **Frameworks e bibliotecas:** 
-- **Banco de dados:** 
-- **Ferramentas:** 
+## Sobre os projetos
 
-## Implementação
+Cada projeto possui sua própria documentação, contendo informações sobre seus objetivos, motivação, tecnologias utilizadas, implementação, resultados e limitações.
 
-Explique brevemente como o projeto funciona e como foi implementada
-a solução proposta.
+A documentação também pode apresentar os aprendizados obtidos durante o desenvolvimento e as possibilidades de utilização da solução.
 
-Destaque os componentes ou mecanismos relevantes para compreender
-o funcionamento do projeto.
+## Projetos
 
-## Funcionalidades
-
-- Funcionalidade 1
-- Funcionalidade 2
-- Funcionalidade 3
-
-## Resultados e Aprendizados
-
-Descreva o que foi possível testar, verificar ou aprender durante
-o desenvolvimento.
-
-Registre os resultados obtidos e eventuais limitações identificadas.
-
-## Como Executar
-
-Apresente os requisitos e as instruções necessárias para executar
-o projeto localmente.
-
-1. Obtenha o código-fonte.
-2. Configure as dependências necessárias.
-3. Configure o ambiente, se aplicável.
-4. Execute o projeto conforme as instruções específicas.
-
-## Limitações e Observações
-
-Registre limitações conhecidas, requisitos específicos ou cuidados
-necessários para utilizar o projeto.
-
-## Uso do Projeto
-
-Informe a finalidade prevista para o projeto, como experimentação,
-prototipação, testes locais ou aprendizado.
-
-Esclareça eventuais restrições de uso, quando necessário.
+| Projeto | Descrição | Status |
+|---|---|---|
+| [API Genérica](./API-Generica/) | API CRUD genérica para testes e prototipação com bancos de dados MySQL. | [Status] |
