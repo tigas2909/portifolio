@@ -6,7 +6,7 @@
 
 - **Nível:** 2 — Projetos Simples
 - **Categoria:** Processamento de Dados / Automação
-- **Status:** [Informe o status atual]
+- **Status:** Finalizado
 - **Contexto:** Acadêmico / Necessidade real de um evento
 
 ## 1. Visão Geral
