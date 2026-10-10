@@ -37,7 +37,7 @@ O objetivo é permitir que outras pessoas compreendam a solução, conheçam seu
 
 | Projeto | Descrição | Status |
 |---|---|---|
-| [Nome do Projeto](./Nome-Do-Projeto/) | [Descrição breve da solução implementada.] | [Status] |
+| [comparacao de dados](./comparacao de dados/) | [Descrição breve da solução implementada.] | [Status] |
 
 ---
 
