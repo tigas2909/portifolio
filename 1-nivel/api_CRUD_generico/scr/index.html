@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>API Genérica - Documentação</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 45px 20px;
+        }
+
+        header h1,
+        header p {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        header h1 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #d1d5db;
+            margin-bottom: 0;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin-top: 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 30px;
+        }
+
+        code {
+            background: #eef0f2;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: #111827;
+            color: #e5e7eb;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 9px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .get {
+            background: #2563eb;
+        }
+
+        .post {
+            background: #16a34a;
+        }
+
+        .put {
+            background: #d97706;
+        }
+
+        .warning {
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .success {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .info {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f3f4f6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>API Genérica</h1>
+
+    <p>
+        Ferramenta simples para testes rápidos, prototipação e operações
+        CRUD em bancos de dados que seguem o padrão definido nesta documentação.
+    </p>
+</header>
+
+<main>
+
+    <section>
+        <h2>1. Sobre a API</h2>
+
+        <p>
+            Esta API foi criada para facilitar testes rápidos em bancos
+            de dados que seguem uma estrutura padronizada.
+        </p>
+
+        <p>
+            A ideia é permitir que uma nova tabela possa ser utilizada
+            pela API sem a necessidade de criar um Controller e um
+            Repository específicos para cada entidade.
+        </p>
+
+        <div class="warning">
+            <strong>⚠️ Atenção:</strong>
+            esta API foi desenvolvida para testes rápidos, protótipos,
+            projetos pessoais e pequenas aplicações.
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Não recomendada para projetos empresariais de grande porte:</strong>
+            esta API não foi projetada para sistemas corporativos,
+            aplicações de grande escala ou APIs públicas que necessitem
+            de recursos avançados de segurança, autenticação, autorização,
+            auditoria, controle de permissões, rate limiting, versionamento
+            e regras de negócio complexas.
+        </div>
+
+        <p>
+            Para projetos grandes ou sistemas empresariais, recomenda-se
+            desenvolver uma arquitetura específica para o projeto,
+            implementando as regras de negócio e os mecanismos de segurança
+            necessários.
+        </p>
+    </section>
+
+    <section>
+        <h2>2. Funcionamento</h2>
+
+        <p>
+            A API possui uma arquitetura simples dividida em algumas camadas:
+        </p>
+
+        <pre>
+Request
+   ↓
+Router
+   ↓
+Controller
+   ↓
+Repository
+   ↓
+PDO
+   ↓
+MySQL
+        </pre>
+
+        <h3>Router</h3>
+
+        <p>
+            Responsável por identificar o método HTTP e os parâmetros
+            enviados pela URL.
+        </p>
+
+        <h3>Controller</h3>
+
+        <p>
+            Responsável por receber a requisição e chamar as operações
+            necessárias do Repository.
+        </p>
+
+        <h3>Repository</h3>
+
+        <p>
+            Responsável pelas operações diretamente relacionadas ao banco
+            de dados.
+        </p>
+
+        <h3>PDO</h3>
+
+        <p>
+            Responsável pela comunicação entre a aplicação PHP e o banco
+            de dados.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Requisitos do banco de dados</h2>
+
+        <p>
+            Para que a API funcione corretamente, as tabelas precisam
+            seguir algumas convenções.
+        </p>
+
+        <div class="warning">
+            <strong>Importante:</strong>
+            essas convenções são obrigatórias para esta versão da API.
+            Tabelas que não seguirem o padrão podem causar erros durante
+            determinadas operações.
+        </div>
+
+        <h3>3.1 Prefixo das tabelas</h3>
+
+        <p>
+            Todas as tabelas utilizadas pela API devem possuir o prefixo
+            <code>tb_</code>.
+        </p>
+
+        <pre>
+tb_teste
+tb_produto
+tb_cliente
+tb_usuario
+        </pre>
+
+        <p>
+            Ao enviar:
+        </p>
+
+        <pre>"table": "produto"</pre>
+
+        <p>
+            a API automaticamente utilizará:
+        </p>
+
+        <pre>tb_produto</pre>
+
+        <h3>3.2 Chave primária</h3>
+
+        <p>
+            A chave primária deve seguir o formato:
+        </p>
+
+        <pre>id_nomeDaTabela</pre>
+
+        <p>Por exemplo:</p>
+
+        <pre>
+tb_produto
+    ↓
+id_produto
+        </pre>
+
+        <h3>3.3 Status</h3>
+
+        <p>
+            Para utilizar as operações de registros ativos, inativos e
+            o delete lógico, a tabela deve possuir uma coluna chamada
+            <code>status</code>.
+        </p>
+
+        <p>
+            Os valores utilizados pela API são:
+        </p>
+
+        <pre>
+ativo
+inativo
+        </pre>
+
+        <p>Exemplo:</p>
+
+        <pre>
+status ENUM('ativo', 'inativo') DEFAULT 'ativo'
+        </pre>
+
+        <h3>3.4 Exemplo completo</h3>
+
+        <pre>
+CREATE TABLE tb_teste (
+    id_teste INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    valor DECIMAL(10,2),
+    status ENUM('ativo', 'inativo') DEFAULT 'ativo'
+);
+        </pre>
+
+        <div class="success">
+            Seguindo esse padrão, a tabela poderá utilizar as operações
+            genéricas da API.
+        </div>
+    </section>
+
+    <section>
+        <h2>4. Conexão com o banco</h2>
+
+        <p>
+            As informações de conexão são enviadas através do objeto
+            <code>connection</code>.
+        </p>
+
+        <pre>
+{
+    "connection": {
+        "dsn": "mysql:host=localhost;dbname=api;charset=utf8mb4",
+        "username": "usuario",
+        "password": "senha"
+    }
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>5. Estrutura da requisição</h2>
+
+        <p>
+            As requisições utilizam dois objetos principais:
+        </p>
+
+        <ul>
+            <li><code>connection</code> — informações do banco;</li>
+            <li><code>info</code> — informações da operação.</li>
+        </ul>
+
+        <pre>
+{
+    "connection": {
+        "dsn": "...",
+        "username": "...",
+        "password": "..."
+    },
+
+    "info": {
+        "table": "teste"
+    }
+}
+        </pre>
+    </section>
+
+    <section>
+        <h2>6. GET</h2>
+
+        <h3>
+            <span class="method get">GET</span>
+            Buscar todos os registros
+        </h3>
+
+        <pre>GET /index.php</pre>
+
+        <p>Body:</p>
+
+        <pre>
+{
+    "connection": {
+        "dsn": "mysql:host=localhost;dbname=api;charset=utf8mb4",
+        "username": "usuario",
+        "password": "senha"
+    },
+
+    "info": {
+        "table": "teste"
+    }
+}
+        </pre>
+
+        <h3>
+            <span class="method get">GET</span>
+            Buscar por ID
+        </h3>
+
+        <pre>GET /index.php?id=10</pre>
+
+        <p>
+            Busca um registro específico utilizando a chave primária
+            correspondente à tabela.
+        </p>
+
+        <h3>
+            <span class="method get">GET</span>
+            Buscar registros ativos
+        </h3>
+
+        <pre>GET /index.php?acao=selectAtivo</pre>
+
+        <p>
+            Retorna somente registros cujo campo
+            <code>status</code> seja <code>ativo</code>.
+        </p>
+
+        <h3>
+            <span class="method get">GET</span>
+            Buscar registros inativos
+        </h3>
+
+        <pre>GET /index.php?acao=selectInativo</pre>
+
+        <p>
+            Retorna somente registros cujo campo
+            <code>status</code> seja <code>inativo</code>.
+        </p>
+    </section>
+
+    <section>
+        <h2>7. POST</h2>
+
+        <h3>
+            <span class="method post">POST</span>
+            Inserir registro
+        </h3>
+
+        <pre>POST /index.php</pre>
+
+        <p>Exemplo:</p>
+
+        <pre>
+{
+    "connection": {
+        "dsn": "mysql:host=localhost;dbname=api;charset=utf8mb4",
+        "username": "usuario",
+        "password": "senha"
+    },
+
+    "info": {
+        "table": "teste",
+        "nome": "teste1",
+        "valor": 2.20,
+        "status": "ativo"
+    }
+}
+        </pre>
+
+        <p>
+            A API utiliza automaticamente os campos enviados para montar
+            a instrução de inserção.
+        </p>
+
+        <div class="info">
+            O campo da chave primária não precisa ser enviado quando ele
+            estiver configurado como <code>AUTO_INCREMENT</code>.
+        </div>
+    </section>
+
+    <section>
+        <h2>8. PUT</h2>
+
+        <h3>
+            <span class="method put">PUT</span>
+            Atualizar registro
+        </h3>
+
+        <pre>PUT /index.php?id=10&acao=atualizar</pre>
+
+        <p>Exemplo:</p>
+
+        <pre>
+{
+    "connection": {
+        "dsn": "mysql:host=localhost;dbname=api;charset=utf8mb4",
+        "username": "usuario",
+        "password": "senha"
+    },
+
+    "info": {
+        "table": "teste",
+        "nome": "Novo nome",
+        "valor": 5.50
+    }
+}
+        </pre>
+
+        <p>
+            O registro identificado pelo ID será atualizado com os campos
+            enviados no objeto <code>info</code>.
+        </p>
+
+        <h3>
+            <span class="method put">PUT</span>
+            Delete lógico
+        </h3>
+
+        <pre>PUT /index.php?id=10&acao=delete</pre>
+
+        <p>
+            A API não remove fisicamente o registro do banco.
+        </p>
+
+        <p>
+            Em vez disso, altera o campo <code>status</code> para
+            <code>inativo</code>.
+        </p>
+
+        <div class="warning">
+            <strong>Importante:</strong>
+            o registro continua armazenado no banco de dados.
+            Ele apenas passa a ser considerado inativo.
+        </div>
+    </section>
+
+    <section>
+        <h2>9. Parâmetros da URL</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Exemplo</th>
+                    <th>Função</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td><code>?id=10</code></td>
+                    <td>Identifica um registro específico.</td>
+                </tr>
+
+                <tr>
+                    <td>acao</td>
+                    <td><code>?acao=selectAtivo</code></td>
+                    <td>Define uma operação específica.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>10. Códigos HTTP</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Utilização</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>200</td>
+                    <td>OK</td>
+                    <td>Operação realizada com sucesso.</td>
+                </tr>
+
+                <tr>
+                    <td>201</td>
+                    <td>Created</td>
+                    <td>Registro criado com sucesso.</td>
+                </tr>
+
+                <tr>
+                    <td>400</td>
+                    <td>Bad Request</td>
+                    <td>Requisição inválida.</td>
+                </tr>
+
+                <tr>
+                    <td>404</td>
+                    <td>Not Found</td>
+                    <td>Registro não encontrado.</td>
+                </tr>
+
+                <tr>
+                    <td>405</td>
+                    <td>Method Not Allowed</td>
+                    <td>Método HTTP não permitido.</td>
+                </tr>
+
+                <tr>
+                    <td>500</td>
+                    <td>Internal Server Error</td>
+                    <td>Erro interno da aplicação.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>11. Resumo dos endpoints</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Método</th>
+                    <th>URL</th>
+                    <th>Operação</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>GET</td>
+                    <td><code>/index.php</code></td>
+                    <td>Buscar todos</td>
+                </tr>
+
+                <tr>
+                    <td>GET</td>
+                    <td><code>/index.php?id=10</code></td>
+                    <td>Buscar por ID</td>
+                </tr>
+
+                <tr>
+                    <td>GET</td>
+                    <td><code>/index.php?acao=selectAtivo</code></td>
+                    <td>Buscar ativos</td>
+                </tr>
+
+                <tr>
+                    <td>GET</td>
+                    <td><code>/index.php?acao=selectInativo</code></td>
+                    <td>Buscar inativos</td>
+                </tr>
+
+                <tr>
+                    <td>POST</td>
+                    <td><code>/index.php</code></td>
+                    <td>Inserir registro</td>
+                </tr>
+
+                <tr>
+                    <td>PUT</td>
+                    <td><code>/index.php?id=10&acao=atualizar</code></td>
+                    <td>Atualizar registro</td>
+                </tr>
+
+                <tr>
+                    <td>PUT</td>
+                    <td><code>/index.php?id=10&acao=delete</code></td>
+                    <td>Inativar registro</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>12. Exemplo completo</h2>
+
+        <p>
+            Exemplo de uma tabela compatível:
+        </p>
+
+        <pre>
+CREATE TABLE tb_produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    valor DECIMAL(10,2),
+    status ENUM('ativo', 'inativo') DEFAULT 'ativo'
+);
+        </pre>
+
+        <p>Inserção:</p>
+
+        <pre>
+POST /index.php
+
+{
+    "connection": {
+        "dsn": "mysql:host=localhost;dbname=api;charset=utf8mb4",
+        "username": "usuario",
+        "password": "senha"
+    },
+
+    "info": {
+        "table": "produto",
+        "nome": "Teclado",
+        "valor": 150.00,
+        "status": "ativo"
+    }
+}
+        </pre>
+
+        <p>Consulta:</p>
+
+        <pre>GET /index.php</pre>
+
+        <p>Consulta por ID:</p>
+
+        <pre>GET /index.php?id=1</pre>
+
+        <p>Inativação:</p>
+
+        <pre>PUT /index.php?id=1&acao=delete</pre>
+    </section>
+
+    <section>
+        <h2>13. Considerações</h2>
+
+        <p>
+            Esta API prioriza simplicidade e velocidade de implementação.
+        </p>
+
+        <p>
+            Seu principal objetivo é permitir que um banco de dados
+            padronizado possa ser testado rapidamente através de
+            requisições HTTP, sem a necessidade de implementar uma
+            estrutura completa para cada entidade.
+        </p>
+
+        <div class="success">
+            <strong>Objetivo principal:</strong>
+            testar rapidamente um banco de dados seguindo o padrão
+            definido nesta documentação.
+        </div>
+
+        <div class="warning">
+            <strong>Não confundir com uma API de produção:</strong>
+            para sistemas reais de grande porte, a arquitetura deve ser
+            adaptada às necessidades específicas do projeto.
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    API Genérica — Documentação
+</footer>
+
+</body>
+</html>
