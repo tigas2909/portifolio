@@ -37,7 +37,7 @@ O objetivo é permitir que outras pessoas compreendam a solução, conheçam seu
 
 | Projeto | Descrição | Status |
 |---|---|---|
-| [comparacao de dados]('./comparacao de dados/') | [Descrição breve da solução implementada.] | [Status] |
+| [Comparação de Dados](./comparacao%20de%20dados/) | Compara dados de participantes para auxiliar na identificação de registros. | Concluído |
 
 ---
 
