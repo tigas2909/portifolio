@@ -30,4 +30,4 @@ A documentação também pode apresentar os aprendizados obtidos durante o desen
 
 | Projeto | Descrição | Status |
 |---|---|---|
-| [API Genérica](./API-Generica/) | API CRUD genérica para testes e prototipação com bancos de dados MySQL. | [Status] |
+| [API Genérica](./api_CRUD_generico) | API CRUD genérica para testes e prototipação com bancos de dados MySQL. | [Status] |
