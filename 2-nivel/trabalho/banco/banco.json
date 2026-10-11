@@ -1,0 +1,92 @@
+[
+    {
+        "id": "68be369cbc38f",
+        "tipo": "celular",
+        "marca": "xiomi",
+        "modelo": "poco c75",
+        "armazenamento": "256 GB",
+        "processador": "MediaTek Helio G92 Max",
+        "memoria_ram": "8 GB",
+        "selecao": "1"
+    },
+    {
+        "id": "68be3b9a16932",
+        "tipo": "celular",
+        "marca": "samsung",
+        "modelo": "A53",
+        "armazenamento": "256 GB",
+        "processador": "SAMSUNG Exynos 1280",
+        "memoria_ram": "6 GB",
+        "selecao": "1"
+    },
+    {
+        "id": "68be418d169d0",
+        "tipo": "celular",
+        "marca": "motorola",
+        "modelo": "MG31",
+        "armazenamento": "128 GB",
+        "processador": "Helio G85 MediaTek",
+        "memoria_ram": "4 GB",
+        "selecao": "1"
+    },
+    {
+        "id": "68c46bf62e136",
+        "tipo": "pc",
+        "marca": "mancer",
+        "modelo": "ASUS HB1M-C",
+        "armazenamento": "3 TB",
+        "processador": "intel core I5-4600",
+        "memoria_ram": "16 GB",
+        "selecao": "2"
+    },
+    {
+        "id": "68c46c92e8924",
+        "tipo": "video_game",
+        "marca": "PlayStation",
+        "modelo": "ps5- pro",
+        "armazenamento": "1 TB",
+        "processador": "AMD Ryzen \u201cZen 2\u201d",
+        "memoria_ram": "16 GB",
+        "selecao": "4"
+    },
+    {
+        "id": "68c46d14895c9",
+        "tipo": "notebook",
+        "marca": "ACCER",
+        "modelo": "accer nitro v5",
+        "armazenamento": "1 TB",
+        "processador": "intel core i7-11800H",
+        "memoria_ram": "16 GB",
+        "selecao": "3"
+    },
+    {
+        "id": "68cc961417d54",
+        "tipo": "celular",
+        "marca": "xiomi",
+        "modelo": "poco m7pro",
+        "armazenamento": "256 GB",
+        "processador": "Dimensity 7025 Ultra MediaTek",
+        "memoria_ram": "8 GB",
+        "selecao": "1"
+    },
+    {
+        "id": "68cc9befd5c4a",
+        "tipo": "celular",
+        "marca": "iphone",
+        "modelo": "iphone 17",
+        "armazenamento": "2 TB",
+        "processador": "chip A19",
+        "memoria_ram": "8 GB",
+        "selecao": "1"
+    },
+    {
+        "id": "68cca0baaedda",
+        "tipo": "celular",
+        "marca": "xiomi",
+        "modelo": "poco m7pro",
+        "armazenamento": "256 GB",
+        "processador": "Dimensity 7025 Ultra MediaTek",
+        "memoria_ram": "8 GB",
+        "selecao": "1"
+    }
+]
