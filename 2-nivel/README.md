@@ -39,7 +39,7 @@ O objetivo é permitir que outras pessoas compreendam a solução, conheçam seu
 |---|---|---|
 | [Comparação de Dados](./comparacao%20de%20dados/) | Compara dados de participantes para auxiliar na identificação de registros. | Concluído |
 | [trabalho](./trabalho/) | Meu primeiro trabalho com persistencia de dados | concluido |
-[CRUD Alunos](./crud-Aluno/)|  Exercício acadêmico desenvolvido em PHP e MySQL para praticar operações CRUD, persistência de dados com PDO e relacionamento entre alunos e cursos| concluido|
+[CRUD Alunos](./crud_Aluno/)|  Exercício acadêmico desenvolvido em PHP e MySQL para praticar operações CRUD, persistência de dados com PDO e relacionamento entre alunos e cursos| concluido|
 
 ---
 
