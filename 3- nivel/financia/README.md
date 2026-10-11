@@ -1,6 +1,6 @@
 # Fluxo
 
-API REST em PHP para controle financeiro pessoal. O sistema registra ganhos e transações (contas recorrentes, parceladas e ocasionais), com status de pagamento e controle de parcelas, como uma planilha simplificada acessada por requisições JSON. O projeto inclui uma implementação própria de autenticação por JWT (HS256), ainda em fase de integração.
+Sistema de controle financeiro pessoal, composto por uma API em PHP e uma interface web. O Fluxo permite registrar ganhos e gastos, acompanhar parcelas pagas e pendentes e visualizar a situação financeira do mês, de forma simples, para quem tem pouca familiaridade com planilhas eletrônicas. O projeto inclui uma implementação própria de autenticação por JWT (HS256), ainda em fase de integração.
 
 ## Classificação
 
@@ -8,35 +8,40 @@ API REST em PHP para controle financeiro pessoal. O sistema registra ganhos e tr
 - **Status:** Em desenvolvimento
 - **Contexto:** Pessoal
 
-> **Aviso de status:** o projeto está em construção. A persistência e a validação de ganhos e o módulo JWT já estão escritos, mas a API ainda não foi testada de ponta a ponta. Login, criação de transações, rotas protegidas e o front-end em Vue.js ainda não foram implementados. As seções abaixo separam claramente o que existe no código do que é planejado.
+> **Aviso de status:** o projeto está em construção. A persistência e a validação de ganhos e o módulo JWT já estão escritos, mas a API ainda não foi testada de ponta a ponta. Cadastro, login, rotas protegidas, o modelo completo de parcelas, o dashboard e a interface web ainda não foram implementados. As seções abaixo separam o que existe no código do que faz parte do escopo planejado.
 
 ---
 
 ## 1. Visão geral
 
-O Fluxo é uma API para que uma pessoa registre o dinheiro que entra (ganhos) e o que precisa pagar (transações), acompanhando o que está pendente, o que já foi pago e, no caso de compras parceladas, quantas parcelas já foram quitadas.
+O Fluxo centraliza o registro e o acompanhamento de ganhos, gastos, parcelas e pagamentos em uma interface simples, para que o usuário veja a sua situação financeira sem depender de conhecimentos avançados em planilhas.
 
-- **O que é:** uma API REST em PHP, com banco MySQL, que recebe e responde JSON.
-- **Problema que procura resolver:** substituir planilhas de controle financeiro por um sistema com usuários, validação de dados e persistência.
-- **Público-alvo:** pessoas que querem organizar suas finanças pessoais.
-- **Principais funcionalidades planejadas:** cadastro e login de usuários com token JWT, registro de ganhos e transações, controle de parcelas e status de pagamento, e um front-end em Vue.js.
+- **O que é:** uma aplicação web com backend/API em PHP e MySQL e uma interface web (planejada em Vue.js).
+- **Problema que procura resolver:** organizar a vida financeira pessoal, em especial o acompanhamento de gastos parcelados, das parcelas já pagas e dos valores ainda pendentes.
+- **Público-alvo:** pessoas que querem organizar suas finanças, mas têm pouca familiaridade com planilhas.
+- **Principais funcionalidades planejadas:** conta de usuário com login por JWT, registro de ganhos e gastos, geração automática de parcelas, registro de pagamentos, histórico mensal, dashboard e cálculo de saldo.
 
 ## 2. Objetivos
 
 ### Objetivo principal
 
-Construir um sistema de controle financeiro pessoal com autenticação, em que cada usuário acessa apenas os seus próprios dados.
+Construir uma aplicação web de controle financeiro pessoal, com autenticação e controle de acesso, em que cada usuário vê e gerencia apenas os seus próprios dados.
 
 ### Objetivos específicos
 
-- Modelar ganhos e transações (recorrentes, parceladas e ocasionais) com status e controle de parcelas.
-- Validar os dados de entrada antes de gravá-los no banco.
-- Implementar autenticação com JWT e identificar o usuário a partir do token.
-- Criar um front-end em Vue.js para usar e testar a API.
+- Permitir criar e gerenciar a conta do usuário.
+- Registrar ganhos com suas datas de entrada e gastos em uma estrutura de parcelas.
+- Gerar automaticamente as parcelas futuras de um gasto e acompanhar as parcelas pagas e pendentes.
+- Registrar o valor e a data efetivamente pagos.
+- Consultar ganhos e gastos por período e visualizar o histórico mensal.
+- Exibir um dashboard com a situação financeira atual e o saldo, calculado com os valores efetivamente recebidos e pagos.
+- Publicar o sistema em um domínio próprio, em uma versão beta.
 
 ## 3. Motivação
 
-Projeto pessoal desenvolvido aos poucos como forma de aprender e de se desafiar tecnicamente. Reúne tópicos que não apareciam nos exercícios anteriores do portfólio: modelagem de dados com regras de negócio (parcelas e status), validação de entrada em camadas e autenticação baseada em token implementada manualmente, sem biblioteca.
+Muitas pessoas querem organizar suas finanças, mas desistem de planilhas por falta de familiaridade com a ferramenta. O Fluxo busca oferecer uma alternativa mais simples, com atenção especial aos gastos parcelados, que são difíceis de acompanhar em controles manuais.
+
+Para o autor, o projeto também é um desafio técnico pessoal, desenvolvido aos poucos: modelagem de dados com regras de negócio, validação de entrada em camadas e autenticação por token implementada manualmente, sem biblioteca.
 
 ## 4. Tecnologias utilizadas
 
@@ -47,7 +52,9 @@ Projeto pessoal desenvolvido aos poucos como forma de aprender e de se desafiar 
 | MySQL / MariaDB | Persistência de usuários, ganhos e transações |
 | JSON | Formato de entrada e saída da API |
 | JWT (HS256, implementação própria) | Autenticação por token, usando `hash_hmac` e base64url |
-| Vue.js *(planejado)* | Front-end para consumir a API |
+| Vue.js *(planejado)* | Interface web |
+| Apache *(planejado)* | Servidor para a publicação em domínio próprio |
+| Composer *(planejado)* | Gerenciamento de dependências, quando forem necessárias |
 
 ## 5. Requisitos e funcionalidades
 
@@ -66,15 +73,32 @@ Projeto pessoal desenvolvido aos poucos como forma de aprender e de se desafiar 
 - Integração do JWT com as rotas (o módulo existe, mas ainda não é chamado pela API).
 - Criação de transações (a validação existe, o `create` do DAO ainda não).
 
-### Planejadas
+### Planejadas para a primeira versão
 
-- Cadastro e login de usuários (com `password_hash` / `password_verify`).
-- Atualização e exclusão de ganhos e transações.
-- Filtro dos dados pelo usuário do token.
-- Atualização de pagamento e de status das transações.
-- Front-end em Vue.js.
+- Cadastro com nome, e-mail e senha, com a senha armazenada com hash.
+- Login com JWT (access token e refresh token em cookies) e proteção das rotas.
+- Controle de acesso: cada usuário acessa apenas os seus dados.
+- Cadastro, edição e exclusão de ganhos e de gastos.
+- Gastos tratados sempre por meio de parcelas: um gasto à vista é uma parcela, e um gasto parcelado tem duas ou mais.
+- Geração automática das parcelas futuras de um gasto.
+- Marcação de parcelas como pagas, com registro do valor e da data efetivamente pagos.
+- Controle de gastos pendentes e pagos.
+- Consulta de ganhos e gastos por período, histórico mensal e detalhamento das parcelas.
+- Dashboard financeiro e cálculo do saldo com base nos valores efetivamente recebidos e pagos.
+- Exclusão da conta junto com os dados financeiros relacionados.
+- Interface web.
+- Testes manuais e, depois, testes automatizados.
+- Publicação em domínio próprio e teste da versão beta com quatro usuários.
+
+### Fora do escopo da primeira versão
+
+- Aplicativo mobile.
+- Integração automática com bancos, importação de extratos e pagamentos automáticos.
+- Confirmação de e-mail, bloqueio de conta por tentativas de login e recuperação de senha.
+- Recorrência automática de ganhos.
+- Sistema de notificações.
+- Retenção do histórico financeiro após a exclusão da conta.
 - Lançamento de transações por e-mail (versão futura).
-- Testes automatizados.
 
 ### Regras de negócio
 
@@ -92,11 +116,22 @@ Definidas no esquema do banco:
 - Total de parcelas com padrão 1 e parcelas pagas com padrão 0.
 - O e-mail do usuário é único.
 
+Planejadas:
+
+- Todo gasto é representado por parcelas, e as parcelas futuras são geradas automaticamente.
+- O saldo considera apenas os valores efetivamente recebidos e pagos.
+- A exclusão da conta remove os dados financeiros relacionados.
+
+O esquema atual (contadores de parcelas na tabela `transactions`) deve ser revisto para comportar parcelas individuais, com vencimento, valor e data de pagamento por parcela.
+
 ### Requisitos e restrições
 
 - PHP 8.0 ou superior com a extensão `pdo_mysql`.
 - MySQL ou MariaDB com suporte a `utf8mb4`.
 - Um arquivo de configuração local (`config/config.php`) com as credenciais do banco e o segredo do JWT. Esse arquivo não deve ser versionado.
+- O projeto é desenvolvido individualmente, com tempo e recursos limitados, e a primeira versão tem escopo reduzido, priorizando as funcionalidades essenciais.
+- O sistema depende de o próprio usuário preencher as informações financeiras.
+- A versão beta terá acesso controlado.
 
 ## 6. Arquitetura e organização
 
@@ -107,7 +142,7 @@ Arquitetura em camadas, com a responsabilidade separada entre entrada e roteamen
 ### Fluxo de funcionamento
 
 ```text
-Cliente (Postman ou front-end Vue, planejado)
+Cliente (Postman ou interface web em Vue.js, planejada)
         |  JSON: { type, action, data }
         v
 src/index.php
@@ -128,7 +163,7 @@ DAO (PDO, consultas preparadas)
 MySQL
 ```
 
-Planejado: antes do roteamento, o token enviado em `Authorization: Bearer <token>` será validado por `ConfigJWT` e o id do usuário será repassado ao Controller e aos DAOs.
+Planejado: antes do roteamento, o token enviado em cookie será validado por `ConfigJWT` e o id do usuário será repassado ao Controller e aos DAOs.
 
 ### Estrutura do projeto
 
@@ -152,7 +187,7 @@ fluxo/
 │   └── jwt/
 │       └── ConfigJWT.php    # geração e validação de tokens
 ├── test/                    # reservado para testes (vazio)
-├── view/                    # reservado para o front-end (vazio)
+├── view/                    # reservado para a interface web (vazio)
 └── README.md
 ```
 
@@ -169,11 +204,12 @@ fluxo/
 |---|---|
 | `DECIMAL(12,2)` para valores monetários | Evita erros de arredondamento de ponto flutuante |
 | `ENUM` para tipo e status das transações | Restringe os valores válidos no próprio banco |
-| Chaves estrangeiras com `ON DELETE CASCADE` | Remove ganhos e transações junto com o usuário |
+| Chaves estrangeiras com `ON DELETE CASCADE` | Remove ganhos e transações junto com o usuário, o que também atende à exclusão de conta planejada |
 | `ATTR_EMULATE_PREPARES => false` e consultas preparadas | Mantém os valores separados do SQL, protegendo contra injeção de SQL |
-| Resposta padronizada (`success` e `data`/`errors`) | Simplifica o consumo da API pelo front-end |
+| Resposta padronizada (`success` e `data`/`errors`) | Simplifica o consumo da API pela interface web |
 | JWT implementado sem biblioteca | Entender na prática a estrutura do padrão (header, payload e assinatura) |
 | `user_id` obtido do token (planejado) | Evita que o cliente informe o dono do registro no corpo da requisição |
+| Tokens em cookies (planejado) | Evita expor o token ao JavaScript da interface, usando cookies `HttpOnly` |
 
 ## 8. Banco de dados e persistência
 
@@ -189,14 +225,16 @@ MySQL (ou MariaDB), com acesso via PDO. O banco se chama `financia`, nome origin
 
 Cada ganho e cada transação pertence a um usuário (`user_id`, chave estrangeira para `users`).
 
+Planejado: uma estrutura de parcelas individuais ligada a cada gasto, com número da parcela, vencimento, valor, data e valor efetivamente pagos e status.
+
 ### Estratégia de persistência
 
 Inserção e consulta (listar tudo e por id) estão escritas para ganhos. Para transações, só as consultas estão escritas. Atualização e exclusão ainda não estão implementadas.
 
 ## 9. Segurança e validações
 
-- **Autenticação:** o módulo de geração e validação de tokens JWT está implementado, mas ainda não está integrado às rotas e não há cadastro nem login.
-- **Autorização:** não implementada. Atualmente os dados não são filtrados por usuário, e o `user_id` ainda é enviado no corpo da requisição.
+- **Autenticação:** o módulo de geração e validação de tokens JWT está implementado, mas ainda não está integrado às rotas e não há cadastro nem login. Planejado: access token e refresh token em cookies, com senhas armazenadas com hash.
+- **Autorização:** não implementada. Atualmente os dados não são filtrados por usuário, e o `user_id` ainda é enviado no corpo da requisição. Planejado: o id do usuário virá do token e todas as consultas serão filtradas por ele.
 - **Validação:** implementada para criação de ganhos e de transações (ver seção 5). As datas ainda não têm validação de formato.
 - **Tratamento de erros:** erros de banco são capturados nos DAOs e devolvidos como resposta padronizada. Entradas inválidas na API recebem HTTP 400.
 - **Proteção de dados:** as consultas usam parâmetros preparados. A coluna `password` comporta o hash de senha, mas o armazenamento com `password_hash` ainda não foi implementado. As credenciais ficam em um arquivo de configuração local que não deve ir para o repositório.
@@ -245,7 +283,7 @@ php -r "echo bin2hex(random_bytes(32));"
 
 ### 3. Instalar dependências
 
-O projeto não usa dependências externas (sem Composer).
+Por enquanto o projeto não usa dependências externas (sem Composer).
 
 ### 4. Executar a aplicação
 
@@ -255,7 +293,7 @@ php -S localhost:8000 -t src
 
 ### 5. Acessar ou utilizar o sistema
 
-Envie requisições JSON para `http://localhost:8000/index.php`, como nos exemplos abaixo.
+Envie requisições JSON para `http://localhost:8000/index.php`, como nos exemplos abaixo. A publicação em Apache, em domínio próprio, está planejada para a versão beta.
 
 ## 11. Exemplos de utilização
 
@@ -323,12 +361,13 @@ Ainda não foram realizados testes automatizados nem validação ponta a ponta d
 
 ### Testes planejados
 
-- Criação e listagem de ganhos pela API.
+- Testes manuais da API (criação e listagem de ganhos, entradas inválidas, geração e pagamento de parcelas).
 - Validação de entradas inválidas (valor negativo, tipo inexistente, parcelas pagas maiores que o total).
 - Geração e validação de tokens JWT (token válido, expirado, adulterado e de tipo errado).
 - Isolamento de dados entre usuários, depois da integração do JWT.
-
-A pasta `test/` está reservada para esses testes.
+- Cálculo de saldo e de parcelas.
+- Testes automatizados, em uma etapa posterior (a pasta `test/` está reservada para eles).
+- Teste da versão beta com quatro usuários testers.
 
 ## 13. Desafios técnicos
 
@@ -339,11 +378,11 @@ A pasta `test/` está reservada para esses testes.
 - **Solução adotada:** codificação base64url com decodificação estrita, validação do header (`typ` e `alg` exatos), checagem dos claims, assinatura com `hash_hmac` e comparação com `hash_equals`.
 - **Limitações que permanecem:** o módulo ainda não está integrado às rotas e tem pontos a revisar (ver seção 14).
 
-### Modelar transações recorrentes, parceladas e ocasionais
+### Modelar gastos e parcelas
 
-- **Problema:** representar tipos diferentes de despesa em uma única tabela.
-- **Solução adotada:** campos de tipo, status e controle de parcelas (`total_installments` e `paid_installments`), com validação da consistência entre eles.
-- **Limitações que permanecem:** a lógica de pagamento e de mudança de status ainda não está implementada.
+- **Problema:** representar gastos à vista e parcelados com acompanhamento do que foi pago e do que está pendente.
+- **Solução parcial:** o esquema atual tem campos de tipo, status e contadores de parcelas, com validação da consistência entre eles.
+- **Limitações que permanecem:** o modelo ainda não tem parcelas individuais, a geração automática das parcelas e a lógica de pagamento e de mudança de status não foram implementadas, e o esquema deve ser revisto para isso.
 
 ## 14. Limitações conhecidas
 
@@ -351,23 +390,23 @@ A pasta `test/` está reservada para esses testes.
 - Não há cadastro, login nem rotas protegidas. O JWT está escrito, mas não é usado.
 - Os dados não são filtrados por usuário.
 - A criação de transações, a atualização e a exclusão não estão implementadas.
-- As requisições de consulta usam corpo JSON em requisições `GET`, formato que muitos clientes (incluindo o `fetch` dos navegadores) não aceitam. Deve mudar quando o front-end entrar.
-- Não há tratamento de CORS para um front-end em outra origem.
+- O modelo de parcelas, o dashboard, o histórico mensal e o cálculo de saldo ainda não existem.
+- As requisições de consulta usam corpo JSON em requisições `GET`, formato que muitos clientes (incluindo o `fetch` dos navegadores) não aceitam. Deve mudar quando a interface web entrar.
+- Não há tratamento de CORS para uma interface em outra origem. Com tokens em cookies, será preciso informar a origem exata e permitir credenciais.
 - As mensagens de erro do banco são devolvidas ao cliente e devem ser substituídas por mensagens genéricas.
-- Pontos a revisar no módulo JWT: a verificação de existência do usuário compara o id com a contagem de usuários em vez de consultar o usuário, e os tokens de acesso e de refresh ainda não são claramente separados.
+- Pontos a revisar no módulo JWT: a verificação de existência do usuário compara o id com a contagem de usuários em vez de consultar o usuário, os tokens de acesso e de refresh ainda não são claramente separados e o refresh tem a mesma duração do access.
 - Sem testes automatizados.
 
 ## 15. Possíveis melhorias
 
-- Implementar cadastro e login, com `password_hash` e `password_verify`.
-- Proteger as rotas com o JWT e filtrar todos os dados pelo usuário do token.
-- Completar o CRUD de ganhos e transações.
-- Implementar o fluxo de pagamento, com atualização de parcelas e status.
+Além do escopo planejado na seção 5:
+
 - Adotar rotas REST convencionais, com `GET` sem corpo e parâmetros na URL.
-- Adicionar CORS, paginação e um resumo de saldo por período.
-- Criar o front-end em Vue.js.
-- Permitir o lançamento de transações por e-mail.
-- Escrever testes automatizados para validação, DAOs e JWT.
+- Paginação nas listagens.
+- Recuperação de senha, confirmação de e-mail e bloqueio por tentativas de login.
+- Recorrência automática de ganhos e notificações.
+- Lançamento de transações por e-mail.
+- Testes automatizados para validação, DAOs e JWT.
 
 ## 16. Aprendizados
 
@@ -375,4 +414,4 @@ Durante o desenvolvimento estão sendo praticados: a modelagem de um domínio fi
 
 ## 17. Licença e uso
 
-Licença ainda não definida. Até que uma licença seja escolhida,
+Licença ainda não definida. Até que uma licença seja escolhida, todos os direitos permanecem com o autor.
