@@ -38,6 +38,7 @@ O objetivo é permitir que outras pessoas compreendam a solução, conheçam seu
 | Projeto | Descrição | Status |
 |---|---|---|
 | [Comparação de Dados](./comparacao%20de%20dados/) | Compara dados de participantes para auxiliar na identificação de registros. | Concluído |
+| [trabalho](./trabalho/) | Meu primeiro trabalho com persistencia de dados | concluido |
 
 ---
 
