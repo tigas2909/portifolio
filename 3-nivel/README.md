@@ -63,7 +63,8 @@ O nível de detalhamento deve ser compatível com a complexidade da implementaç
 
 | Projeto | Descrição | Tecnologias | Status |
 |---|---|---|---|
-| [Loja Virtual](./trabalho/) | Sistema web com cadastro de usuários, autenticação, catálogo de produtos, carrinho de compras, pedidos e gerenciamento de estoque. | Java 17, Spring Boot, Spring MVC, Spring Data JPA, Hibernate, Thymeleaf e MySQL | Acadêmico |
+| [Loja Virtual](./trabalho/loja_virtual/) | Sistema web com cadastro de usuários, autenticação, catálogo de produtos, carrinho de compras, pedidos e gerenciamento de estoque. | Java 17, Spring Boot, Spring MVC, Spring Data JPA, Hibernate, Thymeleaf e MySQL | Acadêmico |
+| [Fluxo](./fluxo/) | Sistema de controle financeiro desenvolvido para pessoas que não têm familiaridade com finanças ou preferem uma alternativa mais simples às planilhas do Excel. | PHP 8, Vue.js e MySQL | Versão beta |
 
 ## Considerações finais
 
