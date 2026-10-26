@@ -1,0 +1,21 @@
+:root {
+  --bg: #f2f4f3;
+  --card: #fff;
+  --text: #1d2321;
+  --muted: #5d6764;
+  --line: #c9d0cd;
+  --accent: #1f6f5c;
+  --accent-text: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151a18;
+    --card: #1e2523;
+    --text: #e8ecea;
+    --muted: #9aa5a1;
+    --line: #36403d;
+    --accent: #3fae95;
+    --accent-text: #0e1513;
+  }
+}

@@ -1,0 +1,119 @@
+{
+    "users": {
+        "create": {
+            "type": "users",
+            "action": "create",
+            "data": {
+                "name": "Usuário",
+                "email": "usuario@example.com"
+            }
+        },
+
+        "login": {
+            "type": "users",
+            "action": "login",
+            "data": {
+                "email": "usuario@example.com",
+                "password": "senha123"
+            }
+        },
+
+        "updatePassword": {
+            "type": "users",
+            "action": "updatePassword",
+            "data": {
+                "password": "novaSenha123"
+            }
+        }
+    },
+    "income": {
+        "create": {
+            "type": "income",
+            "action": "create",
+            "data": {
+                "description": "Salário",
+                "amount": 3000.00,
+                "received_at": "2026-10-05"
+            }
+        },
+        "select_all": {
+            "type": "income",
+            "action": "select_all",
+            "data": {"mouth" : "2026/9"}
+        },
+        "select_by_id": {
+            "type": "income",
+            "action": "select_by_id",
+            "data": {
+                "id": 1
+            }
+        },
+        "update": {
+            "type": "income",
+            "action": "update",
+            "data": {
+                "id": 1,
+                "description": "Salário atualizado",
+                "amount": 3200.00,
+                "received_at": "2026-10-05"
+            }
+        },
+        "delete": {
+            "type": "income",
+            "action": "delete",
+            "data": {
+                "id": 1
+            }
+        }
+    },
+    "transaction": {
+        "create": {
+            "type": "transaction",
+            "action": "create",
+            "data": {
+                "description": "Notebook",
+                "amount": 3600.00,
+                "type": "INSTALLMENT",
+                "status": "PENDING",
+                "due_date": "2026-11-10",
+                "paid_at": null,
+                "total_installments": 12,
+                "paid_installments": 0
+            }
+        },
+        "select_all": {
+            "type": "transaction",
+            "action": "select_all",
+            "data": {}
+        },
+        "select_by_id": {
+            "type": "transaction",
+            "action": "select_by_id",
+            "data": {
+                "id": 1
+            }
+        },
+        "update": {
+            "type": "transaction",
+            "action": "update",
+            "data": {
+                "id": 1,
+                "description": "Notebook atualizado",
+                "amount": 3600.00,
+                "type": "INSTALLMENT",
+                "status": "PENDING",
+                "due_date": "2026-11-10",
+                "paid_at": null,
+                "total_installments": 12,
+                "paid_installments": 0
+            }
+        },
+        "delete": {
+            "type": "transaction",
+            "action": "delete",
+            "data": {
+                "id": 1
+            }
+        }
+    }
+}
