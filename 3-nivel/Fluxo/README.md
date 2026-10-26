@@ -152,7 +152,8 @@ O backend é responsável por processar as requisições, validar os dados e ace
 │                              │
 │  Usuários                    │
 │  Ganhos                      │
-│  Transações                  │
+│  Transações                  |
+|  Parcelas                    │
 └──────────────────────────────┘
 ```
 
